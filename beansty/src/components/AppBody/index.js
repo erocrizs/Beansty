@@ -34,7 +34,8 @@ class AppBody extends Component {
       case 'new_deck':
         return (
           <CreateDeck
-            onCreateDeck={this.createNewDeck.bind(this)}/>
+            onCreateDeck={this.createNewDeck.bind(this)}
+            onCreateCancel={() => this.setScreen('list')}/>
         );
       case 'list':
       default:

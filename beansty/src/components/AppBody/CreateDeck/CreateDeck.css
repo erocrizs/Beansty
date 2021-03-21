@@ -1,0 +1,90 @@
+#create-deck-container {
+  box-sizing: border-box;
+  padding: 20px;
+  
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+#create-deck {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+#create-deck-details, .create-card-container, #add-new-card {
+  box-sizing: border-box;
+  padding: 20px;
+  width: 100%;
+  margin-bottom: 15px;
+  border: 1px solid black;
+}
+
+#create-deck-details > input, #create-deck-details > textarea, #create-deck-details div {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#create-deck-details #new-deck-name {
+  width: 100%;
+  border: none;
+  
+  font-size: 1.5em;
+  height: 1.5em;
+}
+
+#create-deck-details #new-deck-desc {
+  width: 100%;
+  resize: none;
+  height: 3em;
+}
+
+#create-deck-details #new-deck-passing-block {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#create-deck-details #new-deck-passing-block input {
+  display: block;
+}
+
+#create-deck-details #new-deck-passing-block #new-deck-passing {
+  flex: 1 1 0px;
+  max-width: 300px;
+}
+
+#create-deck-details #new-deck-passing-block #new-deck-passing-text {
+  flex: 0 0 3em;
+  margin-left: 10px;
+}
+
+#create-deck-container #create-deck-finish {
+  flex: 0 0 40px;
+  width: 100%;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-self: center;
+}
+
+#create-deck-container #create-deck-finish button {
+  display: block;
+  box-sizing: border-box;
+  height: 100%;
+  width: 150px;
+  padding: 10px;
+}
+
+#create-deck-container #create-deck-finish #create-new-deck-cancel {
+  text-align: left;
+}
+
+#create-deck-container #create-deck-finish #create-new-deck-button {
+  text-align: right;
+}
