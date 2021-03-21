@@ -13,7 +13,7 @@ class CreateDeck extends Component {
           question: 'What is 1 + 1?',
           type: 'text',
           answer: '2',
-          score: 1
+          point: 1
         }
       ]
     };
@@ -22,6 +22,20 @@ class CreateDeck extends Component {
   render() {
     return (
       <div id="create-deck-container" className="full-height">
+        <div id="create-deck-finish">
+          <button
+            id="create-new-deck-cancel"
+            type="reset"
+            form="create-deck-form">
+            Back
+          </button>
+          <button
+            id="create-new-deck-button"
+            type="submit"
+            form="create-deck-form">
+            Finish Deck
+          </button>
+        </div>
         <div id="create-deck" className="full-height">
           <div id="create-deck-details">
             <label htmlFor="new-deck-title" className="no-render">Deck Name</label>
@@ -78,20 +92,6 @@ class CreateDeck extends Component {
             </div>
           </div>
         </div>
-        <div id="create-deck-finish">
-          <button
-            id="create-new-deck-cancel"
-            type="reset"
-            form="create-deck-form">
-            Back
-          </button>
-          <button
-            id="create-new-deck-button"
-            type="submit"
-            form="create-deck-form">
-            Create New Button
-          </button>
-        </div>
       </div>
     );
   }
@@ -99,8 +99,11 @@ class CreateDeck extends Component {
   renderCards () {
     return this.state.cards.map(
       card => (
-        <div className="create-card-container">
-          <CreateCard key={card.id} card={card}/>
+        <div key={card.id} className="create-card-container">
+          <CreateCard 
+            card={card}
+            onUpdate={(prop, value) => this.updateCard(card.id, prop, value)}
+            onDelete={() => this.deleteCard(card.id)}/>
         </div>
       )
     );
@@ -125,12 +128,48 @@ class CreateDeck extends Component {
     );
   }
 
+  updateCard (id, prop, value) {
+    for (let card of this.state.cards) {
+      if (card.id === id) {
+        if (prop === 'point' && !value.match(/^\d+(\.\d*)?$/)) {
+          break;
+        }
+
+        card[prop] = value;
+        break;
+      }
+    }
+
+    this.setState({
+      ...this.state,
+      cards: [...this.state.cards]
+    });
+  }
+
+  deleteCard (cardId) {
+    let indexToDelete = -1;
+    for (let i in this.state.cards) {
+      if (this.state.cards[i].id === cardId) {
+        indexToDelete = i;
+      }
+    }
+
+    if (indexToDelete >= 0) {
+      this.state.cards.splice(indexToDelete, 1);
+    }
+
+    this.setState({
+      ...this.state,
+      cards: [...this.state.cards]
+    });
+  }
+
   newCardTemplate () {
     return {
       id: this.getNewCardID(),
       question: '',
       type: null,
-      score: 1
+      point: 1
     };
   }
 

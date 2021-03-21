@@ -9,22 +9,22 @@ const mockdeck = (id) => ({
       question: 'What is 1 + 1?',
       type: 'text',
       answer: '2',
-      score: 1
+      point: 1
     },
     {
       id: 1,
       question: 'What kind of question is this?',
       type: 'radio',
       options: [
-        'radio',
-        'text',
-        'checkbox',
-        'arrange',
-        'enumerate_order',
-        'enumerate_unorder',
+        'Choose',
+        'Text',
+        'Checkbox',
+        'Arrange',
+        'Ordered List',
+        'Unordered List'
       ],
       answer: '0',
-      score: 1
+      point: 1
     },
     {
       id: 2,
@@ -36,7 +36,7 @@ const mockdeck = (id) => ({
         '2 + 8'
       ],
       answer: [1, 2],
-      score: 1
+      point: 1
     },
     {
       id: 3,
@@ -49,23 +49,23 @@ const mockdeck = (id) => ({
         'snake',
         'zebra'
       ],
-      score: 1
+      point: 1
     },
     {
       id: 4,
       question: 'What are the names of the main characters in Tom & Jerry?',
-      type: 'enumerate',
+      type: 'list',
       order: false,
       answer: [
         'Tom',
         'Jerry'
       ],
-      score: 1
+      point: 1
     },
     {
       id: 5,
       question: 'What are the nicknames of the last four demographic cohort/generations? (in order)',
-      type: 'enumerate',
+      type: 'list',
       order: true,
       answer: [
         'Boomers',
@@ -73,7 +73,7 @@ const mockdeck = (id) => ({
         'Millenials',
         'Zoomers'
       ],
-      score: 1
+      point: 1
     }
   ]
 });

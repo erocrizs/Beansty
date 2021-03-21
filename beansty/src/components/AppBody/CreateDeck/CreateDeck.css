@@ -6,6 +6,8 @@
   flex-flow: column nowrap;
   justify-content: space-between;
   align-items: stretch;
+  max-width: 500px;
+  flex: 0 1 500px;
 }
 
 #create-deck {
@@ -71,6 +73,7 @@
   flex-flow: row nowrap;
   justify-content: space-between;
   align-self: center;
+  margin-bottom: 15px;
 }
 
 #create-deck-container #create-deck-finish button {
