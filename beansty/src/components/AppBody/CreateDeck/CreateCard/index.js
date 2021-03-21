@@ -26,7 +26,7 @@ class CreateCard extends Component {
             {this.state.open ? '^' : 'v'}
           </button>
         </div>
-        <div className="create-card-body" className={this.state.open ? '' : 'no-render'}>
+        <div className={'create-card-body' + (this.state.open ? '' : ' no-render')}>
           <div className="create-card-point-container">
             <div className="create-card-point-label">Point Value: </div>
             <input type="text"
@@ -68,7 +68,7 @@ class CreateCard extends Component {
   }
 
   displayTypeOptions () {
-    return (<div>{this.props.card.type || 'none'}</div>)
+    return (<div className="create-card-answer-container">{this.props.card.type || 'none'}</div>)
   }
 
   renderTypeOption (type, label) {
@@ -81,7 +81,8 @@ class CreateCard extends Component {
           value={type}
           checked={this.props.card.type === type}
           onChange={(e) => this.handleCardChange(e, 'type')}/>
-        <label htmlFor={`card-type-${type}-${this.props.card.id}`}>
+        <label className="create-card-type-option-label"
+          htmlFor={`card-type-${type}-${this.props.card.id}`}>
           {label}
         </label>
       </div>

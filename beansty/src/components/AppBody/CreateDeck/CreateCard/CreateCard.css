@@ -1,0 +1,51 @@
+.create-card-header {
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  margin-bottom: 15px;
+}
+
+.create-card-header .new-card-question {
+  box-sizing: border-box;
+  flex: 1 1 150px;
+  resize: none;
+  font-size: 1.2em;
+  height: 3.6em;
+  margin-right: 15px;
+}
+
+.create-card-point-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  
+  margin-bottom: 15px;
+}
+
+.create-card-point-container * {
+  display: block;
+}
+.create-card-point-container .create-card-point {
+  margin-left: 15px;
+  border: none;
+}
+
+.create-card-type {
+  margin-bottom: 15px;
+}
+
+.create-card-type-options {
+  display: grid;
+  grid-template: 1fr 1fr / 1fr 1fr 1fr;
+}
+
+.create-card-type-options .create-card-type-option-label {
+  margin-left: 5px;
+}
+
+.create-card-answer-container {
+  margin-bottom: 15px;
+}
