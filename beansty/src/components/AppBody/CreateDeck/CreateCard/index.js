@@ -25,6 +25,8 @@ class CreateCard extends Component {
             placeholder="Question"
             value={this.props.card.question}
             onChange={(e) => this.handleCardChange(e, 'question')}
+            form="create-deck-form"
+            required
             />
           <button className="new-card-dropdown"
             onClick={this.toggleOpen.bind(this)}>
@@ -34,10 +36,13 @@ class CreateCard extends Component {
         <div className={'create-card-body' + (this.state.open ? '' : ' no-render')}>
           <div className="create-card-point-container">
             <div className="create-card-point-label">Point Value: </div>
-            <input type="text"
+            <input type="number"
               className="create-card-point"
               value={this.props.card.point}
-              onChange={(e) => this.handleCardChange(e, 'point')}/>
+              onChange={(e) => this.handleCardChange(e, 'point')}
+              form="create-deck-form"
+              required
+              />
           </div>
           <div className="create-card-type">
             <div className="create-card-type-label">Type of question:</div>
@@ -84,39 +89,44 @@ class CreateCard extends Component {
       case 'text':
         createAnswerComponent = (
           <CreateTextAnswer
+            cardID={this.props.card.id}
             answer={this.props.card.answer}
-            onSetAnswer={this.setAnswer.bind(this)}/>
+            onAnswer={this.setAnswer.bind(this)}/>
         );
         break;
       case 'radio':
         createAnswerComponent = (
           <CreateRadioAnswer
+            cardID={this.props.card.id}
             answer={this.props.card.answer}
             options={this.props.card.options || []}
-            onSetAnswer={this.setAnswer.bind(this)}/>
+            onAnswer={this.setAnswer.bind(this)}/>
         );
         break;
       case 'checkbox':
         createAnswerComponent = (
           <CreateCheckboxAnswer
+            cardID={this.props.card.id}
             answer={this.props.card.answer}
             options={this.props.card.options || []}
-            onSetAnswer={this.setAnswer.bind(this)}/>
+            onAnswer={this.setAnswer.bind(this)}/>
         );
         break;
       case 'arrange':
         createAnswerComponent = (
           <CreateArrangeAnswer
+            cardID={this.props.card.id}
             answer={this.props.card.answer}
-            onSetAnswer={this.setAnswer.bind(this)}/>
+            onAnswer={this.setAnswer.bind(this)}/>
         );
         break;
       case 'list':
         createAnswerComponent = (
           <CreateListAnswer
+            cardID={this.props.card.id}
             answer={this.props.card.answer}
             order={this.props.card.order || false}
-            onSetAnswer={this.setAnswer.bind(this)}/>
+            onAnswer={this.setAnswer.bind(this)}/>
         );
         break;
     }
@@ -139,7 +149,9 @@ class CreateCard extends Component {
           name={`card-type-${this.props.card.id}`}
           value={type}
           checked={this.props.card.type === type}
-          onChange={(e) => this.handleCardChange(e, 'type')}/>
+          onChange={(e) => this.handleCardChange(e, 'type')}
+          form="create-deck-form"
+          required/>
         <label className="create-card-type-option-label"
           htmlFor={`card-type-${type}-${this.props.card.id}`}>
           {label}

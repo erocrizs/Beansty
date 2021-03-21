@@ -1,0 +1,6 @@
+.create-text-answer-field {
+  width: 100%;
+  min-height: 3em;
+  max-height: 100px;
+  resize: vertical;
+}
