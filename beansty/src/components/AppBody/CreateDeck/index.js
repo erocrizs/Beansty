@@ -13,6 +13,7 @@ class CreateDeck extends Component {
           question: 'What is 1 + 1?',
           type: 'text',
           answer: '2',
+          order: false,
           point: 1
         }
       ]
@@ -135,7 +136,13 @@ class CreateDeck extends Component {
           break;
         }
 
-        card[prop] = value;
+        if (value === undefined) {
+          delete card[prop];
+        }
+        else {
+          card[prop] = value;
+        }
+        
         break;
       }
     }
@@ -169,6 +176,7 @@ class CreateDeck extends Component {
       id: this.getNewCardID(),
       question: '',
       type: null,
+      order: false,
       point: 1
     };
   }

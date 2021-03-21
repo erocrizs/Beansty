@@ -1,5 +1,10 @@
 import { Component } from 'react';
 import './CreateCard.css';
+import CreateCheckboxAnswer from './CreateCheckboxAnswer';
+import CreateArrangeAnswer from './CreateArrangeAnswer';
+import CreateListAnswer from './CreateListAnswer';
+import CreateRadioAnswer from './CreateRadioAnswer';
+import CreateTextAnswer from './CreateTextAnswer';
 
 class CreateCard extends Component {
   constructor(props) {
@@ -68,7 +73,61 @@ class CreateCard extends Component {
   }
 
   displayTypeOptions () {
-    return (<div className="create-card-answer-container">{this.props.card.type || 'none'}</div>)
+    if (!this.props.card.type) {
+      return null;
+    }
+
+    let createAnswerComponent;
+
+    switch (this.props.card.type) {
+      default:
+      case 'text':
+        createAnswerComponent = (
+          <CreateTextAnswer
+            answer={this.props.card.answer}
+            onSetAnswer={this.setAnswer.bind(this)}/>
+        );
+        break;
+      case 'radio':
+        createAnswerComponent = (
+          <CreateRadioAnswer
+            answer={this.props.card.answer}
+            options={this.props.card.options || []}
+            onSetAnswer={this.setAnswer.bind(this)}/>
+        );
+        break;
+      case 'checkbox':
+        createAnswerComponent = (
+          <CreateCheckboxAnswer
+            answer={this.props.card.answer}
+            options={this.props.card.options || []}
+            onSetAnswer={this.setAnswer.bind(this)}/>
+        );
+        break;
+      case 'arrange':
+        createAnswerComponent = (
+          <CreateArrangeAnswer
+            answer={this.props.card.answer}
+            onSetAnswer={this.setAnswer.bind(this)}/>
+        );
+        break;
+      case 'list':
+        createAnswerComponent = (
+          <CreateListAnswer
+            answer={this.props.card.answer}
+            order={this.props.card.order || false}
+            onSetAnswer={this.setAnswer.bind(this)}/>
+        );
+        break;
+    }
+
+    return (<div className="create-card-answer-container">{createAnswerComponent}</div>)
+  }
+
+  setAnswer ({answer, options, order}) {
+    this.props.onUpdate('answer', answer);
+    this.props.onUpdate('options', options);
+    this.props.onUpdate('order', order)
   }
 
   renderTypeOption (type, label) {
