@@ -13,6 +13,7 @@
 
 #app #body {
   grid-area: 2 / 1 / span 1 / span 1;
+  overflow: auto;
 
   display: flex;
   flex-flow: row nowrap;
@@ -26,6 +27,6 @@
 
 @media screen and (min-width: 780px) {
   #app #body #body-margined {
-    flex: 0 1 1100px;
+    flex: 0 1 1300px;
   }
 }

@@ -1,7 +1,70 @@
 #list-deck {
   padding: 20px;
+  display: flex;
+  position: relative;
+
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#list-deck .deck-container {
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid black;
+
+  margin-bottom: 20px;
+  width: 100%;
+  min-height: 100px;
+}
+
+#list-deck .deck-container.add-new-deck {
+  visibility: hidden;
+}
+
+#list-deck #new-deck-absolute {
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 20px;
+  right: 50px;
+
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+
+  display: grid;
+}
+
+#list-deck #new-deck-absolute::before {
+  display: grid;
+  place-content: center;
+  content: "+";
 }
 
 @media screen and (min-width: 780px) {
+  #list-deck {
+    padding: 0px;
+    display: flex;
   
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  
+  #list-deck .deck-container {
+    border: 1px solid black;
+    margin: 10px;
+    height: 150px;
+    flex: 0 0 250px;
+  }
+
+  #list-deck .deck-container.add-new-deck {
+    visibility: visible;
+    border: 1px solid gray;
+    background-color: transparent;
+  }
+
+  #list-deck #new-deck-absolute {
+    display: none;
+  }
 }

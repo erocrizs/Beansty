@@ -19,7 +19,7 @@ class App extends Component {
           Beansty
         </header>
         <div id="body">
-          <div id="body-margined">
+          <div id="body-margined" className="full-height">
             <AppBody decks={this.state.decks}/>
           </div>
         </div>
