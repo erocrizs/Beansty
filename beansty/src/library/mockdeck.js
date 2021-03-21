@@ -1,20 +1,17 @@
-const mockdeck =  (id) => ({
+const mockdeck = (id) => ({
   id,
   name: 'Test Deck ' + id,
   description: 'This is a test deck for testing',
-  tags: ['Tag A', 'Tag B', 'Tag C'],
   passing: 0.6,
   cards: [
     {
-      question: 'What tag does this have?',
-      tags: [0],
+      question: 'What is 1 + 1?',
       type: 'text',
-      answer: 'Tag A',
+      answer: '2',
       score: 1
     },
     {
       question: 'What kind of question is this?',
-      tags: [0, 1, 2],
       type: 'radio',
       options: [
         'radio',
@@ -28,20 +25,18 @@ const mockdeck =  (id) => ({
       score: 1
     },
     {
-      question: 'Which tags does this have?',
-      tags: [1, 2],
+      question: 'Which numbers add up to 10?',
       type: 'checkbox',
       options: [
-        'Tag A',
-        'Tag B',
-        'Tag C'
+        '5 + 6',
+        '3 + 7',
+        '2 + 8'
       ],
       answer: [1, 2],
       score: 1
     },
     {
       question: 'Arrange these into alphabetical order.',
-      tags: [1],
       type: 'arrange',
       answer: [
         'crocodile',
@@ -54,7 +49,6 @@ const mockdeck =  (id) => ({
     },
     {
       question: 'What are the names of the main characters in Tom & Jerry?',
-      tags: [2],
       type: 'enumerate',
       order: false,
       answer: [
@@ -65,7 +59,6 @@ const mockdeck =  (id) => ({
     },
     {
       question: 'What are the nicknames of the last four demographic cohort/generations? (in order)',
-      tags: [2],
       type: 'enumerate',
       order: true,
       answer: [

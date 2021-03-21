@@ -1,17 +1,8 @@
 import {Component} from 'react';
-import mockdeck from './library/mockdeck';
 import './App.css';
 import AppBody from './components/AppBody';
 
-class App extends Component {
-  constructor(props) {
-    super(props)
-  
-    this.state = {
-      decks: mockdeck
-    }
-  }
-  
+class App extends Component {  
   render () {
     return (
       <div id="app">
@@ -20,7 +11,7 @@ class App extends Component {
         </header>
         <div id="body">
           <div id="body-margined" className="full-height">
-            <AppBody decks={this.state.decks}/>
+            <AppBody/>
           </div>
         </div>
       </div>
