@@ -1,0 +1,22 @@
+.create-radio-answer-option {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  margin-bottom: 5px;
+}
+
+.create-radio-answer-option .create-radio-correct-answer {
+  margin-right: 10px;
+}
+
+.create-radio-answer-option .create-radio-answer-text {
+  flex: 1 1 0px;
+  height: 3em;
+  resize: none;
+}
+
+.create-radio-answer-option .create-radio-answer-delete {
+  margin-left: 10px;
+}

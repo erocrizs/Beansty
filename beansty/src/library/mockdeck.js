@@ -15,14 +15,14 @@ const mockdeck = (id) => ({
       id: 1,
       question: 'What kind of question is this?',
       type: 'radio',
-      options: [
-        'Choose',
-        'Text',
-        'Checkbox',
-        'Arrange',
-        'Ordered List',
-        'Unordered List'
-      ],
+      options: {
+        0: 'Choose',
+        1: 'Text',
+        2: 'Checkbox',
+        3: 'Arrange',
+        4: 'Ordered List',
+        5: 'Unordered List'
+      },
       answer: '0',
       point: 1
     },
@@ -30,11 +30,11 @@ const mockdeck = (id) => ({
       id: 2,
       question: 'Which numbers add up to 10?',
       type: 'checkbox',
-      options: [
-        '5 + 6',
-        '3 + 7',
-        '2 + 8'
-      ],
+      options: {
+        0: '5 + 6',
+        1: '3 + 7',
+        2: '2 + 8'
+      },
       answer: [1, 2],
       point: 1
     },

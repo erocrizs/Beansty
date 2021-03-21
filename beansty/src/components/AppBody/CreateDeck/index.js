@@ -9,11 +9,18 @@ class CreateDeck extends Component {
       passing: 50,
       cards: [
         {
-          id: 0,
-          question: 'What is 1 + 1?',
-          type: 'text',
-          answer: '2',
-          order: false,
+          id: 1,
+          question: 'What kind of question is this?',
+          type: 'radio',
+          options: {
+            0: 'Choose',
+            1: 'Text',
+            2: 'Checkbox',
+            3: 'Arrange',
+            4: 'Ordered List',
+            5: 'Unordered List'
+          },
+          answer: '0',
           point: 1
         }
       ]
