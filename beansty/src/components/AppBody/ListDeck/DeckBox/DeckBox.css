@@ -1,0 +1,33 @@
+.deck-box {
+  display: grid;
+  grid-template: 1fr 1em / 1fr;
+  grid-gap: 10px;
+}
+
+.deck-box-detail {
+  grid-area: 1 / 1 / span 1 / span 1;
+}
+
+.deck-box-actions {
+  grid-area: 2 / 1 / span 1 / span 1;
+}
+
+.deck-box-name {
+  font-size: 1.5em;
+  overflow-wrap: break-word;
+}
+
+.deck-box-description {
+  overflow-wrap: break-word;
+}
+
+.deck-box-actions {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deck-box-play {
+  margin-left: 10px;
+}

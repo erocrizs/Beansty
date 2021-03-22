@@ -6,10 +6,10 @@ class ListDeck extends Component {
   render () {
     return (
       <div id="list-deck" className="full-height">
-        {this.props.decks.map(this.renderDeck)}
+        {this.props.decks.map(this.renderDeck.bind(this))}
         <div className="deck-container add-new-deck"
           onClick={e => this.triggerCreateNew(e)}>
-          Add new
+          Add New Deck
         </div>
         <div id="new-deck-absolute"
           onClick={e => this.triggerCreateNew(e)}/>
@@ -20,7 +20,11 @@ class ListDeck extends Component {
   renderDeck (deck) {
     return (
       <div key={deck.id} className="deck-container">
-        <DeckBox deck={deck}/>
+        <DeckBox
+          deck={deck}
+          onDelete={() => this.props.onDelete(deck.id)}
+          onEdit={() => this.props.onEdit(deck.id)}
+          onPlay={() => this.props.onPlay(deck.id)}/>
       </div>
     );
   }

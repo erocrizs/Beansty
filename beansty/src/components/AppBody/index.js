@@ -42,7 +42,8 @@ class AppBody extends Component {
         return (
           <ListDeck
             decks={this.state.decks}
-            onCreateNew={() => this.setScreen('new_deck')}/>
+            onCreateNew={() => this.setScreen('new_deck')}
+            onDelete={this.deleteDeck.bind(this)}/>
         );
     }
   }
@@ -70,6 +71,24 @@ class AppBody extends Component {
     }
 
     return maxID + 1;
+  }
+
+  deleteDeck (deckID) {
+    let toDelete = -1;
+    for (let i in this.state.decks) {
+      if (this.state.decks[i].id === deckID) {
+        toDelete = i;
+        break;
+      }
+    }
+
+    if (toDelete >= 0) {
+      this.state.decks.splice(toDelete, 1);
+      this.setState({
+        ...this.state,
+        decks: this.state.decks
+      });
+    }
   }
 }
 
