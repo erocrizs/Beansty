@@ -7,7 +7,7 @@ class CreateCheckboxAnswer extends Component {
     
     let maxID = -1;
     this.answerMap = {};
-    for (let index in this.props.options) {
+    for (let index in props.options) {
       this.answerMap[index] = false;
       if (maxID < +index) {
         maxID = +index;
@@ -16,8 +16,8 @@ class CreateCheckboxAnswer extends Component {
   
     this.lastOptionID = maxID;
 
-    if (this.props.answer && this.props.answer.length) {
-      for (let index of this.props.answer) {
+    if (props.answer && props.answer.length) {
+      for (let index of props.answer) {
         this.answerMap[index] = true;
       }
     }

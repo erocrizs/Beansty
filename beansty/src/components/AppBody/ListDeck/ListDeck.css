@@ -66,6 +66,7 @@
 
   #list-deck .deck-container.add-new-deck {
     visibility: visible;
+    color: gray;
     border: 1px solid gray;
     background-color: transparent;
   }

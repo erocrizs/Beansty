@@ -94,6 +94,7 @@ class CreateDeck extends Component {
             </div>
           </div>
         </div>
+        <div id="new-card-absolute" onClick={this.addCardFromAbsoluteButton.bind(this)}/>
       </div>
     );
   }
@@ -124,6 +125,11 @@ class CreateDeck extends Component {
     if (newValue === '' || newValue === '100' || newValue.match(/^\d?\d$/)) {
       this.setState({passing: event.target.value});
     }
+  }
+
+  addCardFromAbsoluteButton (event) {
+    this.addCard();
+    event.preventDefault();
   }
 
   addCard () {
@@ -202,14 +208,62 @@ class CreateDeck extends Component {
   }
 
   triggerCreate (event) {
+    const cards = this.formatAllCards();
     this.props.onCreateDeck({
       id: this.state.id,
       name: this.state.name.trim(),
       description: this.state.description.trim(),
       passing: parseInt(this.state.passing)/100,
-      cards: this.state.cards
+      cards
     });
     event.preventDefault();
+  }
+
+  formatAllCards () {
+    const formattedList = [];
+
+    for (let cardIndex in this.state.cards) {
+      const card = this.state.cards[cardIndex];
+
+      const formattedCard = {
+        id: cardIndex,
+        question: card.question,
+        point: card.point,
+        type: card.type
+      };
+
+      if (card.type === 'radio' || card.type === 'checkbox') {
+        let lastIndex = -1;
+  
+        const newIndexMap = {};
+        const newOptions = {};
+        for (let i in card.options) {
+          lastIndex++;
+          newIndexMap[i] = lastIndex;
+          newOptions[lastIndex] = card.options[i]; 
+        }
+        
+        if (card.type === 'radio') {
+          formattedCard.answer = newIndexMap[card.answer];
+        }
+        else if (card.type === 'checkbox') {
+          formattedCard.answer = card.answer.map(e => newIndexMap[e]);
+        }
+  
+        formattedCard.options = newOptions;
+      }
+      else if (card.type === 'list') {
+        formattedCard.order = !!card.order;
+        formattedCard.answer = card.answer;
+      }
+      else {
+        formattedCard.answer = card.answer;
+      }
+
+      formattedList.push(formattedCard);
+    }
+
+    return formattedList;
   }
 
   triggerCancel (event) {

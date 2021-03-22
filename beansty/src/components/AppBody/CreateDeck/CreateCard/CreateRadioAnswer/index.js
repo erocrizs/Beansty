@@ -6,7 +6,7 @@ class CreateRadioAnswer extends Component {
     super(props);
     
     let maxID = -1;
-    for (let index in this.props.options) {
+    for (let index in props.options) {
       if (maxID < +index) {
         maxID = +index;
       }

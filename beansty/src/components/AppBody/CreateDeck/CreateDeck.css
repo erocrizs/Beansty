@@ -1,6 +1,7 @@
 #create-deck-container {
   box-sizing: border-box;
   padding: 20px;
+  position: relative;
   
   display: flex;
   flex-flow: column nowrap;
@@ -23,6 +24,29 @@
   width: 100%;
   margin-bottom: 15px;
   border: 1px solid black;
+}
+
+#add-new-card {
+  visibility: hidden;
+}
+
+#new-card-absolute {
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 20px;
+  right: 50px;
+
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+
+  display: grid;
+}
+
+#new-card-absolute::before {
+  display: grid;
+  place-content: center;
+  content: "+";
 }
 
 #create-deck-details > input, #create-deck-details > textarea, #create-deck-details div {
@@ -90,4 +114,17 @@
 
 #create-deck-container #create-deck-finish #create-new-deck-button {
   text-align: right;
+}
+
+@media screen and (min-width: 780px) {
+  #new-card-absolute {
+    display: none;
+  }
+
+  #add-new-card {
+    visibility: visible;
+    color: gray;
+    border: 1px solid gray;
+    background-color: transparent;
+  }
 }

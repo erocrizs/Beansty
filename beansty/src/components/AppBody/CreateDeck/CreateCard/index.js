@@ -11,7 +11,7 @@ class CreateCard extends Component {
     super(props);
   
     this.state = {
-      open: false
+      open: !props.card.type
     };
   }
 
@@ -29,7 +29,8 @@ class CreateCard extends Component {
             required
             />
           <button className="new-card-dropdown"
-            onClick={this.toggleOpen.bind(this)}>
+            onClick={this.toggleOpen.bind(this)}
+            disabled={!this.props.card.type}>
             {this.state.open ? '^' : 'v'}
           </button>
         </div>
@@ -95,7 +96,7 @@ class CreateCard extends Component {
           <CreateRadioAnswer
             cardID={this.props.card.id}
             answer={this.props.card.answer}
-            options={this.props.card.options || []}
+            options={this.props.card.options || {}}
             onAnswer={this.setAnswer.bind(this)}/>
         );
         break;
@@ -104,7 +105,7 @@ class CreateCard extends Component {
           <CreateCheckboxAnswer
             cardID={this.props.card.id}
             answer={this.props.card.answer}
-            options={this.props.card.options || []}
+            options={this.props.card.options || {}}
             onAnswer={this.setAnswer.bind(this)}/>
         );
         break;
@@ -157,8 +158,8 @@ class CreateCard extends Component {
   }
 
   async changeCardType (type) {
-    await this.handleCardChange('type', type);
     await this.setAnswer({});
+    await this.handleCardChange('type', type);
   }
 }
 

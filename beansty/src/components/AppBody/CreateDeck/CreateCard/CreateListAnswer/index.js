@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, Fragment } from 'react';
 import './CreateListAnswer.css';
 
 class CreateListAnswer extends Component {
@@ -24,7 +24,7 @@ class CreateListAnswer extends Component {
             checked={this.props.order || false}
             onChange={this.flipOrder.bind(this)}
             form="create-deck-form"/>
-          Orderd List
+          Ordered List
         </div>
         <div className="create-answer-label">
           Answer:
@@ -61,16 +61,7 @@ class CreateListAnswer extends Component {
           <div className="create-list-answer-order">
             {this.props.order ? index + 1 : '•' }
           </div>
-          <button className="create-list-answer-move"
-            disabled={index === 0}
-            onClick={() => this.moveItem(index, -1)}>
-            ^
-          </button>
-          <button className="create-list-answer-move"
-            disabled={index === this.props.answer.length - 1}
-            onClick={() => this.moveItem(index, 1)}>
-            v
-          </button>
+          {this.renderSortButtons(index)}
           <textarea
             className="create-list-answer-text"
             placeholder="Item Details (512 Characters)"
@@ -86,6 +77,25 @@ class CreateListAnswer extends Component {
         </div>
       )
     );
+  }
+
+  renderSortButtons (index) {
+    if (this.props.order) {
+      return (
+        <Fragment>
+          <button className="create-list-answer-move"
+            disabled={index === 0}
+            onClick={() => this.moveItem(index, -1)}>
+            ^
+          </button>
+          <button className="create-list-answer-move"
+            disabled={index === this.props.answer.length - 1}
+            onClick={() => this.moveItem(index, 1)}>
+            v
+          </button>
+        </Fragment>
+      );
+    }
   }
 
   updateItem (index, value) {
