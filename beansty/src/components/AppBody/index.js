@@ -2,7 +2,7 @@ import { Component } from 'react';
 import './AppBody.css';
 import CreateDeck from './CreateDeck';
 import ListDeck from './ListDeck';
-import mockdeck from '../../library/mockdeck';
+import deckStore from '../../library/deck';
 
 class AppBody extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class AppBody extends Component {
     this.state = {
       screen: 'list',
       editDeck: null,
-      decks: mockdeck
+      decks: deckStore.fetch()
     };
   }
   
@@ -86,18 +86,14 @@ class AppBody extends Component {
 
   finishEditDeck (deck) {
     const currentDecks = this.state.decks;
-    console.log('result:');
-    console.log(deck);
 
     if (deck.id === null) {
-      console.log('new deck');
       deck.id = this.getNewDeckID();
       currentDecks.push(deck);
     }
     else {
       for (let d of currentDecks) {
         if (d.id === deck.id) {
-          console.log('old deck');
           d.name = deck.name;
           d.description = deck.description;
           d.passing = deck.passing;
@@ -107,8 +103,7 @@ class AppBody extends Component {
       }
     }
 
-    console.log(currentDecks);
-
+    deckStore.store(currentDecks);
     this.setState({
       decks: currentDecks,
       screen: 'list' 
@@ -138,6 +133,7 @@ class AppBody extends Component {
 
     if (toDelete >= 0) {
       this.state.decks.splice(toDelete, 1);
+      deckStore.store(this.state.decks);
       this.setState({
         decks: this.state.decks
       });
