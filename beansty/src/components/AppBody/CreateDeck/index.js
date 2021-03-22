@@ -9,15 +9,16 @@ class CreateDeck extends Component {
       passing: 50,
       cards: [
         {
-          id: 2,
-          question: 'Which numbers add up to 10?',
-          type: 'checkbox',
-          options: {
-            0: '5 + 6',
-            1: '3 + 7',
-            2: '2 + 8'
-          },
-          answer: [1, 2],
+          id: 3,
+          question: 'Arrange these into alphabetical order.',
+          type: 'arrange',
+          answer: [
+            'crocodile',
+            'elephant',
+            'koala',
+            'snake',
+            'zebra'
+          ],
           point: 1
         }
       ]

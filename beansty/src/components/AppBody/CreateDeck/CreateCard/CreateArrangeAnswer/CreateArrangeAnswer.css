@@ -1,0 +1,22 @@
+.create-arrange-answer-option {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  margin-bottom: 5px;
+}
+
+.create-arrange-answer-option .create-arrange-answer-move, .create-arrange-answer-option .create-arrange-answer-order {
+  margin-right: 10px;
+}
+
+.create-arrange-answer-option .create-arrange-answer-text {
+  flex: 1 1 0px;
+  height: 3em;
+  resize: none;
+}
+
+.create-arrange-answer-option .create-arrange-answer-delete {
+  margin-left: 10px;
+}

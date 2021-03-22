@@ -66,7 +66,7 @@ class CreateCheckboxAnswer extends Component {
             form="create-deck-form"/>
           <textarea
             className="create-checkbox-answer-text"
-            placeholder="Correct Answer (512 Characters)"
+            placeholder="Option Details (512 Characters)"
             maxLength="512"
             form="create-deck-form"
             onChange={e => this.updateOption(index, e.target.value)}

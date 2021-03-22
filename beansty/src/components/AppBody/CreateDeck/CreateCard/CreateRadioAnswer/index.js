@@ -60,7 +60,7 @@ class CreateRadioAnswer extends Component {
             required/>
           <textarea
             className="create-radio-answer-text"
-            placeholder="Correct Answer (512 Characters)"
+            placeholder="Option Details (512 Characters)"
             maxLength="512"
             form="create-deck-form"
             onChange={e => this.updateOption(index, e.target.value)}
