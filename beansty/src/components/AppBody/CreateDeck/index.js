@@ -6,8 +6,11 @@ class CreateDeck extends Component {
   constructor () {
     super();
     this.state = {
-      passing: 50,
-      cards: []
+      id: this.props.deck.id || null,
+      name: this.props.deck.name || '',
+      description: this.props.deck.description || '',
+      passing: this.props.deck.passing || 50,
+      cards: this.props.deck.cards || []
     };
   }
 
@@ -38,6 +41,8 @@ class CreateDeck extends Component {
               form="create-deck-form"
               maxLength="32"
               placeholder="Deck Name (32 Characters)"
+              value={this.state.name}
+              onChange={e => this.updateName(e.target.value)}
               required
               />
             <label htmlFor="new-deck-desc" className="no-render">Description</label>
@@ -47,6 +52,8 @@ class CreateDeck extends Component {
               form="create-deck-form"
               maxLength="128"
               placeholder="Description (128 Characters)"
+              value={this.state.description}
+              onChange={e => this.updateDescription(e.target.value)}
               />
             <div id="new-deck-passing-block">
               <label htmlFor="new-deck-passing" className="no-render">Passing Grade</label>
@@ -99,6 +106,20 @@ class CreateDeck extends Component {
         </div>
       )
     );
+  }
+
+  updateName (name) {
+    this.setState({
+      ...this.state,
+      name
+    });
+  }
+
+  updateDescription (description) {
+    this.setState({
+      ...this.state,
+      description
+    });
   }
 
   updatePassing (event) {
@@ -190,23 +211,13 @@ class CreateDeck extends Component {
   }
 
   triggerCreate (event) {
-    const deck = {};
-
-    for (let {name, value} of event.target.elements) {
-      if (['name', 'description'].includes(name)) {
-        // texts
-        deck[name] = value.trim();
-      }
-      else if (['passing'].includes(name)) {
-        // numbers
-        deck[name] = +(value.trim());
-      }
-    }
-
-    deck.passing = deck.passing / 100;
-    deck.cards = this.state.cards;
-
-    this.props.onCreateDeck(deck);
+    this.props.onCreateDeck({
+      id: this.state.id,
+      name: this.state.name.trim(),
+      description: this.state.description.trim(),
+      passing: parseInt(this.state.passing)/100,
+      cards: this.state.cards
+    });
     event.preventDefault();
   }
 
