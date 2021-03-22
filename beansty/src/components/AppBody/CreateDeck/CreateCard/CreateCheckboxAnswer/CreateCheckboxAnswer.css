@@ -1,0 +1,22 @@
+.create-checkbox-answer-option {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  margin-bottom: 5px;
+}
+
+.create-checkbox-answer-option .create-checkbox-correct-answer {
+  margin-right: 10px;
+}
+
+.create-checkbox-answer-option .create-checkbox-answer-text {
+  flex: 1 1 0px;
+  height: 3em;
+  resize: none;
+}
+
+.create-checkbox-answer-option .create-checkbox-answer-delete {
+  margin-left: 10px;
+}
