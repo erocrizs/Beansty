@@ -15,10 +15,7 @@ class AppBody extends Component {
   }
   
   setScreen (screen) {
-    this.setState({
-      ...this.state,
-      screen
-    });
+    this.setState({screen});
   }
 
   render () {
@@ -34,6 +31,7 @@ class AppBody extends Component {
       case 'new_deck':
         return (
           <CreateDeck
+            deck={ ({}) }
             onCreateDeck={this.createNewDeck.bind(this)}
             onCreateCancel={() => this.setScreen('list')}/>
         );
@@ -51,10 +49,7 @@ class AppBody extends Component {
   createNewDeck (deck) {
     deck.id = this.getNewDeckID()
     this.setState(
-      {
-        ...this.state,
-        decks: [...this.state.decks, deck]
-      },
+      state => ({ decks: [...state.decks, deck] }),
       () => {
         this.setScreen('list');
       }
@@ -85,7 +80,6 @@ class AppBody extends Component {
     if (toDelete >= 0) {
       this.state.decks.splice(toDelete, 1);
       this.setState({
-        ...this.state,
         decks: this.state.decks
       });
     }

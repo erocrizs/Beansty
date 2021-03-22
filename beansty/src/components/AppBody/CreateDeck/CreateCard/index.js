@@ -66,10 +66,7 @@ class CreateCard extends Component {
   }
 
   toggleOpen () {
-    this.setState({
-      ...this.state,
-      open: !this.state.open
-    });
+    this.setState(state => ({open: !state.open}));
   }
 
   handleCardChange (property, value) {

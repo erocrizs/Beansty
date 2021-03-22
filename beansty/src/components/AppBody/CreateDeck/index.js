@@ -3,14 +3,14 @@ import CreateCard from './CreateCard';
 import './CreateDeck.css';
 
 class CreateDeck extends Component {
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
     this.state = {
-      id: this.props.deck.id || null,
-      name: this.props.deck.name || '',
-      description: this.props.deck.description || '',
-      passing: this.props.deck.passing || 50,
-      cards: this.props.deck.cards || []
+      id: props.deck.id || null,
+      name: props.deck.name || '',
+      description: props.deck.description || '',
+      passing: props.deck.passing || 50,
+      cards: props.deck.cards || []
     };
   }
 
@@ -109,35 +109,25 @@ class CreateDeck extends Component {
   }
 
   updateName (name) {
-    this.setState({
-      ...this.state,
-      name
-    });
+    this.setState({name});
   }
 
   updateDescription (description) {
-    this.setState({
-      ...this.state,
-      description
-    });
+    this.setState({description});
   }
 
   updatePassing (event) {
     const newValue = event.target.value;
     if (newValue === '' || newValue === '100' || newValue.match(/^\d?\d$/)) {
-      this.setState({
-        ...this.state,
-        passing: event.target.value
-      });
+      this.setState({passing: event.target.value});
     }
   }
 
   addCard () {
     this.setState(
-      {
-        ...this.state,
-        cards: [...this.state.cards, this.newCardTemplate()]
-      }
+      state => ({
+        cards: [...state.cards, this.newCardTemplate()]
+      })
     );
   }
 
@@ -162,7 +152,6 @@ class CreateDeck extends Component {
     return new Promise(
       (resolve, reject) => this.setState(
         {
-          ...this.state,
           cards: [...this.state.cards]
         },
         err => err ? reject(err) : resolve()
@@ -183,7 +172,6 @@ class CreateDeck extends Component {
     }
 
     this.setState({
-      ...this.state,
       cards: [...this.state.cards]
     });
   }
