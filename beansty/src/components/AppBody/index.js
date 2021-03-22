@@ -10,6 +10,7 @@ class AppBody extends Component {
   
     this.state = {
       screen: 'list',
+      editDeck: null,
       decks: mockdeck
     };
   }
@@ -28,32 +29,90 @@ class AppBody extends Component {
 
   renderCurrentScreen () {
     switch (this.state.screen) {
-      case 'new_deck':
+      case 'edit':
         return (
           <CreateDeck
-            deck={ ({}) }
-            onCreateDeck={this.createNewDeck.bind(this)}
-            onCreateCancel={() => this.setScreen('list')}/>
+            deck={this.state.editDeck || null}
+            onCreateDeck={this.finishEditDeck.bind(this)}
+            onCreateCancel={this.cancelEditDeck.bind(this)}/>
         );
       case 'list':
       default:
         return (
           <ListDeck
             decks={this.state.decks}
-            onCreateNew={() => this.setScreen('new_deck')}
-            onDelete={this.deleteDeck.bind(this)}/>
+            onCreateNew={this.createNewDeck.bind(this)}
+            onEdit={this.editDeck.bind(this)}
+            onDelete={this.deleteDeck.bind(this)}
+            onPlay={this.playDeck.bind(this)}/>
         );
     }
   }
 
-  createNewDeck (deck) {
-    deck.id = this.getNewDeckID()
-    this.setState(
-      state => ({ decks: [...state.decks, deck] }),
-      () => {
-        this.setScreen('list');
+  createNewDeck () {
+    this.setState({
+      editDeck: null,
+      screen: 'edit'
+    });
+  }
+
+  editDeck (deckID) {
+    let editDeck = null;
+    for (let i in this.state.decks) {
+      if (this.state.decks[i].id === deckID) {
+        editDeck = this.state.decks[i];
       }
-    );
+    }
+
+    if (editDeck) {
+      this.setState({
+        editDeck,
+        screen: 'edit'
+      });
+    }
+  }
+
+  playDeck (deckID) {
+    // TODO
+    alert('playing ' + deckID);
+  }
+
+  cancelEditDeck () {
+    this.setState({
+      editDeck: null,
+      screen: 'list'
+    });
+  }
+
+  finishEditDeck (deck) {
+    const currentDecks = this.state.decks;
+    console.log('result:');
+    console.log(deck);
+
+    if (deck.id === null) {
+      console.log('new deck');
+      deck.id = this.getNewDeckID();
+      currentDecks.push(deck);
+    }
+    else {
+      for (let d of currentDecks) {
+        if (d.id === deck.id) {
+          console.log('old deck');
+          d.name = deck.name;
+          d.description = deck.description;
+          d.passing = deck.passing;
+          d.cards = deck.cards;
+          break;
+        }
+      }
+    }
+
+    console.log(currentDecks);
+
+    this.setState({
+      decks: currentDecks,
+      screen: 'list' 
+    });
   }
   
   getNewDeckID () {

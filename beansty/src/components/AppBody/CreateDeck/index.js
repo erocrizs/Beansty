@@ -5,12 +5,15 @@ import './CreateDeck.css';
 class CreateDeck extends Component {
   constructor (props) {
     super(props);
+
+    let deck = props.deck || {};
+
     this.state = {
-      id: props.deck.id || null,
-      name: props.deck.name || '',
-      description: props.deck.description || '',
-      passing: props.deck.passing || 50,
-      cards: props.deck.cards || []
+      id: deck.id || null,
+      name: deck.name || '',
+      description: deck.description || '',
+      passing: (deck.passing * 100) || 50,
+      cards: deck.cards || []
     };
   }
 
