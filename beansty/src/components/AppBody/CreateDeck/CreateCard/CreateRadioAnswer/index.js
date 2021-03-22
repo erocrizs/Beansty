@@ -75,10 +75,6 @@ class CreateRadioAnswer extends Component {
     );
   }
 
-  componentWillUnmount () {
-    this.updateAnswer(null, this.props.options);
-  }
-
   updateOption (index, value) {
     this.props.options[index] = value;
     this.updateAnswer(this.props.answer, this.props.options);

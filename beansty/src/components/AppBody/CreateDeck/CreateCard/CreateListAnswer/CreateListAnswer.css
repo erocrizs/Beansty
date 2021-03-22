@@ -1,0 +1,30 @@
+.create-list-order {
+  margin-bottom: 15px;
+}
+
+.create-list-order input {
+  margin-right: 10px;
+}
+
+.create-list-answer-option {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  margin-bottom: 5px;
+}
+
+.create-list-answer-option .create-list-answer-move, .create-list-answer-option .create-list-answer-order {
+  margin-right: 10px;
+}
+
+.create-list-answer-option .create-list-answer-text {
+  flex: 1 1 0px;
+  height: 3em;
+  resize: none;
+}
+
+.create-list-answer-option .create-list-answer-delete {
+  margin-left: 10px;
+}

@@ -61,7 +61,7 @@ class CreateCheckboxAnswer extends Component {
             className="create-checkbox-correct-answer"
             name={`create-checkbox-correct-answer-${this.props.cardID}`}
             value={index}
-            checked={this.isCorrectAnswer(index)}
+            checked={(this.props.answer || []).includes(`${index}`)}
             onChange={() => this.adjustAnswer(index)}
             form="create-deck-form"/>
           <textarea
@@ -79,10 +79,6 @@ class CreateCheckboxAnswer extends Component {
         </div>
       )
     );
-  }
-
-  componentWillUnmount () {
-    this.updateAnswer(null, this.props.options);
   }
 
   isCorrectAnswer (index) {

@@ -7,21 +7,7 @@ class CreateDeck extends Component {
     super();
     this.state = {
       passing: 50,
-      cards: [
-        {
-          id: 3,
-          question: 'Arrange these into alphabetical order.',
-          type: 'arrange',
-          answer: [
-            'crocodile',
-            'elephant',
-            'koala',
-            'snake',
-            'zebra'
-          ],
-          point: 1
-        }
-      ]
+      cards: []
     };
   }
 
@@ -152,10 +138,15 @@ class CreateDeck extends Component {
       }
     }
 
-    this.setState({
-      ...this.state,
-      cards: [...this.state.cards]
-    });
+    return new Promise(
+      (resolve, reject) => this.setState(
+        {
+          ...this.state,
+          cards: [...this.state.cards]
+        },
+        err => err ? reject(err) : resolve()
+      )
+    );
   }
 
   deleteCard (cardId) {

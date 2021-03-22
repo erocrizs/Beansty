@@ -19,10 +19,6 @@ class CreateTextAnswer extends Component {
       </div>
     );
   }
-
-  componentWillUnmount () {
-    this.props.onAnswer({answer: null});
-  }
 }
 
 export default CreateTextAnswer;

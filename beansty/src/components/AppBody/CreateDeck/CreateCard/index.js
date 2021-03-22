@@ -24,7 +24,7 @@ class CreateCard extends Component {
             name="question"
             placeholder="Question"
             value={this.props.card.question}
-            onChange={(e) => this.handleCardChange(e, 'question')}
+            onChange={(e) => this.handleCardChange('question', e.target.value)}
             form="create-deck-form"
             required
             />
@@ -39,7 +39,7 @@ class CreateCard extends Component {
             <input type="number"
               className="create-card-point"
               value={this.props.card.point}
-              onChange={(e) => this.handleCardChange(e, 'point')}
+              onChange={(e) => this.handleCardChange('point', e.target.value)}
               form="create-deck-form"
               required
               />
@@ -72,8 +72,7 @@ class CreateCard extends Component {
     });
   }
 
-  handleCardChange (event, property) {
-    const value = event.target.value;
+  handleCardChange (property, value) {
     this.props.onUpdate(property, value);
   }
 
@@ -134,10 +133,10 @@ class CreateCard extends Component {
     return (<div className="create-card-answer-container">{createAnswerComponent}</div>)
   }
 
-  setAnswer ({answer, options, order}) {
-    this.props.onUpdate('answer', answer);
-    this.props.onUpdate('options', options);
-    this.props.onUpdate('order', order)
+  async setAnswer ({answer, options, order}) {
+    await this.props.onUpdate('answer', answer);
+    await this.props.onUpdate('options', options);
+    await this.props.onUpdate('order', order)
   }
 
   renderTypeOption (type, label) {
@@ -149,7 +148,7 @@ class CreateCard extends Component {
           name={`card-type-${this.props.card.id}`}
           value={type}
           checked={this.props.card.type === type}
-          onChange={(e) => this.handleCardChange(e, 'type')}
+          onChange={(e) => this.changeCardType(e.target.value)}
           form="create-deck-form"
           required/>
         <label className="create-card-type-option-label"
@@ -158,6 +157,11 @@ class CreateCard extends Component {
         </label>
       </div>
     );
+  }
+
+  async changeCardType (type) {
+    await this.handleCardChange('type', type);
+    await this.setAnswer({});
   }
 }
 

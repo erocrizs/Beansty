@@ -64,14 +64,13 @@ const mockdeck = (id) => ({
     },
     {
       id: 5,
-      question: 'What are the nicknames of the last four demographic cohort/generations? (in order)',
+      question: 'List the hierarchy of waste management in order.',
       type: 'list',
       order: true,
       answer: [
-        'Boomers',
-        'Gen Xers',
-        'Millenials',
-        'Zoomers'
+        'Reduce',
+        'Reuse',
+        'Recycle',
       ],
       point: 1
     }

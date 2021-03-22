@@ -78,10 +78,6 @@ class CreateArrangeAnswer extends Component {
     );
   }
 
-  componentWillUnmount () {
-    this.updateAnswer(null, this.props.options);
-  }
-
   updateItem (index, value) {
     this.props.answer[index] = value;
     this.updateAnswer(this.props.answer);
@@ -108,10 +104,12 @@ class CreateArrangeAnswer extends Component {
   }
 
   addItem () {
+    let nextAnswer = this.props.answer || [];
+
     this.lastItemIndex++;
-    this.props.answer.push('');
-    this.answerID[this.props.answer.length - 1] = this.lastItemIndex;
-    this.updateAnswer(this.props.answer);
+    nextAnswer.push('');
+    this.answerID[nextAnswer.length - 1] = this.lastItemIndex;
+    this.updateAnswer(nextAnswer, this.props.order);
   }
 
   updateAnswer (answer) {
