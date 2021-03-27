@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import CreateCard from './CreateCard';
+import PassingGradeSlider from '../../common/PassingGradeSlider';
 import './CreateDeck.css';
 
 class CreateDeck extends Component {
@@ -58,31 +59,12 @@ class CreateDeck extends Component {
               value={this.state.description}
               onChange={e => this.updateDescription(e.target.value)}
               />
-            <div id="new-deck-passing-block">
-              <label htmlFor="new-deck-passing" className="no-render">Passing Grade</label>
-              <input
-                type="range"
-                name="passing"
-                id="new-deck-passing"
-                form="create-deck-form"
-                min="0"
-                max="100"
-                step="1"
-                value={this.state.passing}
-                onChange={this.updatePassing.bind(this)}
-                />
-              <input
-                type="number"
-                name="passing"
-                id="new-deck-passing-text"
-                min="0"
-                max="100"
-                step="1"
-                value={this.state.passing}
-                onChange={this.updatePassing.bind(this)}
-                required
-                />
-            </div>
+            <PassingGradeSlider
+              form="create-deck-form"
+              passing={this.state.passing}
+              label={'Passing Grade'}
+              onUpdate={this.updatePassing.bind(this)}
+              />
             <form id="create-deck-form"
               onSubmit={this.triggerCreate.bind(this)}
               onReset={this.triggerCancel.bind(this)}/>
@@ -120,11 +102,8 @@ class CreateDeck extends Component {
     this.setState({description});
   }
 
-  updatePassing (event) {
-    const newValue = event.target.value;
-    if (newValue === '' || newValue === '100' || newValue.match(/^\d?\d$/)) {
-      this.setState({passing: event.target.value});
-    }
+  updatePassing (passing) {
+    this.setState({passing});
   }
 
   addCardFromAbsoluteButton (event) {

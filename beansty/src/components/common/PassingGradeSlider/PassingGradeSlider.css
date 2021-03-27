@@ -1,0 +1,25 @@
+.passing-grade-slider {
+  display: flex !important;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.passing-grade-slider input, .passing-grade-slider label {
+  display: block;
+}
+
+.passing-grade-slider label {
+  margin-right: 10px;
+}
+
+.passing-grade-slider #passing-grade-input {
+  flex: 1 1 0px;
+  max-width: 300px;
+}
+
+.passing-grade-slider #passing-grade-input-text {
+  flex: 0 0 3em;
+  width: 3em;
+  margin-left: 10px;
+}
