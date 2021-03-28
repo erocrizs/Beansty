@@ -1,0 +1,11 @@
+#play-deck {
+  flex: 0 1 500px;
+  max-width: 500px;
+}
+
+#play-deck #finish-play-button {
+  height: 40px;
+  width: 150px;
+  text-align: left;
+  margin-bottom: 15px;
+}

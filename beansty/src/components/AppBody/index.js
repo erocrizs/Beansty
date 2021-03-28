@@ -2,6 +2,7 @@ import { Component } from 'react';
 import './AppBody.css';
 import CreateDeck from './CreateDeck';
 import ListDeck from './ListDeck';
+import PlayDeck from './PlayDeck';
 import deckStore from '../../library/deck';
 
 class AppBody extends Component {
@@ -11,6 +12,7 @@ class AppBody extends Component {
     this.state = {
       screen: 'list',
       editDeck: null,
+      playDeck: null,
       decks: deckStore.fetch()
     };
   }
@@ -36,6 +38,12 @@ class AppBody extends Component {
             onCreateDeck={this.finishEditDeck.bind(this)}
             onCreateCancel={this.cancelEditDeck.bind(this)}/>
         );
+      case 'play':
+        return (
+          <PlayDeck
+            deck={this.state.playDeck}
+            onFinish={this.finishPlayDeck.bind(this)}/>
+        );
       case 'list':
       default:
         return (
@@ -57,24 +65,14 @@ class AppBody extends Component {
   }
 
   editDeck (deckID) {
-    let editDeck = null;
-    for (let i in this.state.decks) {
-      if (this.state.decks[i].id === deckID) {
-        editDeck = this.state.decks[i];
-      }
-    }
+    const editIndex = this.findDeck(deckID);
 
-    if (editDeck) {
+    if (editIndex !== null) {
       this.setState({
-        editDeck,
+        editDeck: this.state.decks[editIndex],
         screen: 'edit'
       });
     }
-  }
-
-  playDeck (deckID) {
-    // TODO
-    alert('playing ' + deckID);
   }
 
   cancelEditDeck () {
@@ -109,6 +107,24 @@ class AppBody extends Component {
       screen: 'list' 
     });
   }
+
+  playDeck (deckID) {
+    const playIndex = this.findDeck(deckID);
+
+    if (playIndex !== null) {
+      this.setState({
+        playDeck: this.state.decks[playIndex],
+        screen: 'play'
+      });
+    }
+  }
+
+  finishPlayDeck () {
+    this.setState({
+      playDeck: null,
+      screen: 'list'
+    });
+  }
   
   getNewDeckID () {
     let maxID = 0;
@@ -123,21 +139,28 @@ class AppBody extends Component {
   }
 
   deleteDeck (deckID) {
-    let toDelete = -1;
-    for (let i in this.state.decks) {
-      if (this.state.decks[i].id === deckID) {
-        toDelete = i;
-        break;
-      }
-    }
+    const deleteIndex = this.findDeck(deckID);
 
-    if (toDelete >= 0) {
-      this.state.decks.splice(toDelete, 1);
+    if (deleteIndex !== null) {
+      this.state.decks.splice(deleteIndex, 1);
       deckStore.store(this.state.decks);
       this.setState({
         decks: this.state.decks
       });
     }
+  }
+
+  findDeck (deckID) {
+    let index = null;
+
+    for (let i in this.state.decks) {
+      if (this.state.decks[i].id === deckID) {
+        index = i;
+        break;
+      }
+    }
+
+    return index;
   }
 }
 
